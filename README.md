@@ -18,7 +18,9 @@ English | <a href="README.zh-CN.md">中文版</a>
 
 Feishu/Lark CardKit v2.0 streaming cards plugin for Hermes Agent — real-time AI response display with typing effect, tool panels, reasoning, and more.
 
-> Based on [Cheerwhy/hermes-lark-streaming](https://github.com/Cheerwhy/hermes-lark-streaming) v0.7.0, with extensive refactoring and optimizations
+| > Based on [Cheerwhy/hermes-lark-streaming](https://github.com/Cheerwhy/hermes-lark-streaming) v0.7.0, with extensive refactoring and optimizations
+| >
+| > 📦 [GitHub Repository](https://github.com/lookatlook-666/hermes-lark-streaming)
 >
 > ⚠️ **Incompatible with the upstream plugin** — if you have the original `Cheerwhy/hermes-lark-streaming` installed, please uninstall it first before installing this version.
 
@@ -53,12 +55,13 @@ Feishu/Lark CardKit v2.0 streaming cards plugin for Hermes Agent — real-time A
 > 插件会自动读取 Hermes 的 `HERMES_HOME` 环境变量定位安装路径（默认 `~/.hermes`），非默认路径下无需额外操作。
 
 ```bash
-hermes plugins install https://gitee.com/Aowen-Nowor/hermes-lark-streaming
+hermes plugins install https://gitee.com/lookatlook-666/hermes-lark-streaming
+# (GitHub mirror, pick whichever is faster for you)
 ```
 or
 
 ```bash
-hermes plugins install https://github.com/Aowen-Nowor/hermes-lark-streaming
+hermes plugins install https://github.com/lookatlook-666/hermes-lark-streaming
 ```
 
 Enter `Y` when prompted to enable the plugin, then restart the gateway:

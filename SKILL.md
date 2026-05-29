@@ -11,7 +11,7 @@
 | 属性 | 值 |
 |------|-----|
 | 版本 | 0.11.0 (DEV 分支) |
-| 仓库 | `https://gitee.com/Aowen-Nowor/hermes-lark-streaming` |
+| 仓库 | `https://github.com/lookatlook-666/hermes-lark-streaming` |
 | 协议 | MIT |
 | Python | ≥3.11 |
 | 基于 | Cheerwhy/hermes-lark-streaming v0.7.0，大规模重构 |
@@ -326,7 +326,7 @@ tests/
 
 ```bash
 # 克隆
-git clone -b DEV https://gitee.com/Aowen-Nowor/hermes-lark-streaming.git
+git clone -b DEV https://github.com/lookatlook-666/hermes-lark-streaming.git
 
 # 安装到 Hermes
 hermes plugins install /path/to/hermes-lark-streaming
@@ -342,7 +342,7 @@ $HERMES_PYTHON -m pytest tests/
 HERMES_PYTHON=~/.hermes/hermes-agent/venv/bin/python3
 $HERMES_PYTHON -m hermes_lark_streaming cleanup
 hermes plugins uninstall hermes-lark-streaming
-hermes plugins install https://gitee.com/Aowen-Nowor/hermes-lark-streaming
+hermes plugins install https://github.com/lookatlook-666/hermes-lark-streaming
 hermes gateway restart
 ```
 
