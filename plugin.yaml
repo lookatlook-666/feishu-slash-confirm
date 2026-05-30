@@ -1,17 +1,4 @@
-name: hermes-lark-streaming
-version: "0.11.0"
-description: "Feishu/Lark CardKit v2.0 streaming cards for Hermes Agent — real-time AI response display with typing effect, tool panels, reasoning, and more"
-author: Aowen-Nowor
-kind: standalone
-provides_hooks:
-  - on_feishu_normalize
-  - on_message_started
-  - on_message_completed
-  - on_message_aborted
-  - on_message_interrupted
-  - on_answer_delta
-  - on_thinking_delta
-  - on_reasoning_delta
-  - on_tool_updated
-  - on_background_review_message
-  - on_cron_deliver
+name: feishu-slash-confirm
+version: "1.0.0"
+description: "飞书斜杠命令确认卡片插件 — 为 /new、/reset、/undo、/reload-mcp 添加交互式确认按钮"
+author: Kai Lu

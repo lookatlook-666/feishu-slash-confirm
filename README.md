@@ -1,56 +1,41 @@
-# hermes-lark-streaming
+# feishu-slash-confirm
 
-Feishu CardKit v2.0 streaming cards plugin for [Hermes Agent](https://github.com/NousResearch/hermes-agent). Replaces plain-text AI replies with real-time interactive cards.
+Interactive confirmation cards for Hermes Agent Feishu slash commands (`/new`, `/reset`, `/undo`, `/reload-mcp`).
 
-Complementary to the upstream [Aowen-Nowor/hermes-lark-streaming](https://github.com/Aowen-Nowor/hermes-lark-streaming), this version additionally displays **`/` slash command responses** (e.g. `/stop`, `/reset`) as cards.
+When you type a slash command, instead of a plain text confirmation prompt, this plugin displays an interactive card with three buttons:
 
-## Features
+- ✅ **Once** — Allow this one time
+- 🔒 **Always** — Always allow (remember preference)
+- ❌ **Cancel** — Cancel the command
 
-- **Streaming cards** — Real-time AI response in interactive cards
-- **Slash command cards** — `/stop` and other commands display interrupt status as cards, auto-start new sessions
-- **Linear mode** — Single-card dynamic rendering with auto-split on element overflow
-- **CardKit v2.0** — Streaming API with IM PATCH fallback
-- **Completion stats** — Footer shows duration, model, token usage
-
-## Install
+## Installation
 
 ```bash
-hermes plugins install https://github.com/lookatlook-666/hermes-lark-streaming
+hermes plugins install https://github.com/lookatlook-666/feishu-slash-confirm
 hermes gateway restart
 ```
 
 ### Uninstall
 
 ```bash
-HERMES_PYTHON=~/.hermes/hermes-agent/venv/bin/python3
-$HERMES_PYTHON -m hermes_lark_streaming cleanup
-hermes plugins uninstall hermes-lark-streaming
+hermes plugins uninstall feishu-slash-confirm
 hermes gateway restart
 ```
 
-## Configuration
+## How It Works
 
-```yaml
-streaming:
-  enabled: true
-  linear: true
-  panel_expanded: false
-  card_ttl_sec: 600
-  inject_time: false
-  footer:
-    fields:
-      - [status, elapsed, model, api_calls]
-      - [tokens, context, history_offset, compression_exhausted]
-    show_label: true
-```
+The plugin monkey-patches the Feishu adapter to:
 
-## Key Fixes (v0.11.0)
+1. Add `send_slash_confirm` — sends an interactive CardKit card with confirm/always/cancel buttons
+2. Wrap `_on_card_action_trigger` — handles button clicks and resolves the slash command via `tools.slash_confirm.resolve()`
 
-| Issue | Fix |
-|-------|-----|
-| Card freezes after element overflow | Auto-split |
-| Dead end after split failure + re-overflow | Overflow split bypasses `split_disabled` |
-| Config re-reads from disk every access | 5s TTL cache |
-| Concurrent message interrupt missed | `threading.Lock` on `_started_msg_ids` |
+## Supported Commands
 
-[Full changelog →](CHANGELOG.md)
+- `/new` — New conversation
+- `/reset` — Reset session
+- `/undo` — Undo last message
+- `/reload-mcp` — Reload MCP tools
+
+## License
+
+MIT

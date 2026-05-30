@@ -1,12 +1,7 @@
 __pycache__/
 *.pyc
-*.egg-info/
-dist/
-build/
+*.pyo
 .env
-*.bak
-.eggs/
-tests/samples/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
+venv/
+dist/
+*.egg-info/
