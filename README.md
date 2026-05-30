@@ -2,17 +2,20 @@
 
 Feishu CardKit v2.0 streaming cards plugin for [Hermes Agent](https://github.com/NousResearch/hermes-agent). Replaces plain-text AI replies with real-time interactive cards.
 
-> **Note: This version is incompatible with the upstream [Aowen-Nowor/hermes-lark-streaming](https://github.com/Aowen-Nowor/hermes-lark-streaming).** Both diverged from the same early codebase and evolved independently with different implementations.
+Complementary to the upstream [Aowen-Nowor/hermes-lark-streaming](https://github.com/Aowen-Nowor/hermes-lark-streaming), this version additionally displays **`/` slash command responses** (e.g. `/stop`, `/reset`) as cards.
+
+## Features
+
+- **Streaming cards** — Real-time AI response in interactive cards
+- **Slash command cards** — `/stop` and other commands display interrupt status as cards, auto-start new sessions
+- **Linear mode** — Single-card dynamic rendering with auto-split on element overflow
+- **CardKit v2.0** — Streaming API with IM PATCH fallback
+- **Completion stats** — Footer shows duration, model, token usage
 
 ## Install
 
 ```bash
 hermes plugins install https://github.com/lookatlook-666/hermes-lark-streaming
-```
-
-Enable when prompted, then restart the gateway:
-
-```bash
 hermes gateway restart
 ```
 
@@ -27,15 +30,13 @@ hermes gateway restart
 
 ## Configuration
 
-Auto-injected into `~/.hermes/config.yaml` on first install:
-
 ```yaml
 streaming:
   enabled: true
-  linear: true               # Single-card dynamic rendering (recommended)
+  linear: true
   panel_expanded: false
   card_ttl_sec: 600
-  inject_time: false         # Inject <time>HH:MM:SS</time> before user messages
+  inject_time: false
   footer:
     fields:
       - [status, elapsed, model, api_calls]
@@ -47,14 +48,9 @@ streaming:
 
 | Issue | Fix |
 |-------|-----|
-| Card freezes after element limit exceeded | Auto-split, `element_limit_hit` flag triggers new card |
-| Dead end after split failure + re-overflow | Split bypasses `split_disabled` when element limit hit |
-| Config re-reads from disk on every access | 5-second TTL cache for high-frequency scenarios |
-| Concurrent messages miss interrupt detection | `threading.Lock` on `_started_msg_ids` |
+| Card freezes after element overflow | Auto-split |
+| Dead end after split failure + re-overflow | Overflow split bypasses `split_disabled` |
+| Config re-reads from disk every access | 5s TTL cache |
+| Concurrent message interrupt missed | `threading.Lock` on `_started_msg_ids` |
 
 [Full changelog →](CHANGELOG.md)
-
-## Known Limitations
-
-- Some Hermes tools (terminal, file, code_execution) are unavailable on Feishu platform; tool panels show status forwarded from Hermes side only
-- Incompatible with the upstream version; cannot be installed simultaneously
