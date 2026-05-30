@@ -1,5 +1,9 @@
 # feishu-slash-confirm
 
+> 该工具由 AI 生成
+
+![效果演示](demo.jpg)
+
 Interactive confirmation cards for Hermes Agent Feishu slash commands (`/new`, `/reset`, `/undo`, `/reload-mcp`).
 
 When you type a slash command, instead of a plain text confirmation prompt, this plugin displays an interactive card with three buttons:
